@@ -16,6 +16,6 @@ class RegisterSerializer(serializers.ModelSerializer):
             password=validated_data['password'],
             role=validated_data.get('role', 'tourist'),
             phone=validated_data.get('phone', ''),
-            profile_image=validated_data.get('profile_image', None)
+            profile_image=validated_data.get('profil
         )
         return user

@@ -13,3 +13,5 @@ class User(AbstractUser):
     role = models.CharField(max_length=20, choices=ROLE_CHOICES, default='tourist')
     
     phone = models.CharField(max_length=20, blank=True, null=True)
+    
+    profile_image = models.ImageField(upload_to='profiles/', blank=True, null=True)

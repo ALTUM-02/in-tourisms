@@ -15,3 +15,8 @@ class User(AbstractUser):
     phone = models.CharField(max_length=20, blank=True, null=True)
     
     profile_image = models.ImageField(upload_to='profiles/', blank=True, null=True)
+    
+    created_at = models.DateTimeField(auto_now_add=True)
+    
+    def __str__(self):
+        return self.username

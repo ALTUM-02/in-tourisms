@@ -8,5 +8,4 @@ class User(AbstractUser):
         ('tourist', 'Tourist'),
         ('officer', 'Officer'),
         ('admin', 'Admin'),
-        ('user', '
     )

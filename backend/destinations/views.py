@@ -1,4 +1,5 @@
 from django.shortcuts import render
+from django_filters.rest_framework import DjangoFilterBackend
 
 # Create your views here.
 from rest_framework import viewsets
@@ -19,6 +20,15 @@ class DestinationViewSet(
     queryset = Destination.objects.all()
 
     serializer_class = DestinationSerializer
+    
+    filter_backends = [
+        DjangoFilterBackend
+    ]
+    
+    filterset_fields = [
+        'region',
+        'entry_fee'
+    ]
 
     permission_classes = [
         IsAuthenticatedOrReadOnly

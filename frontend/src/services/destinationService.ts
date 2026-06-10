@@ -1,16 +1,9 @@
-import { Destination } from "../types/destination";
+// services/destinationService.ts
 
-interface Props {
-  destination: Destination;
-}
+import axios from "axios";
 
-function DestinationCard({ destination }: Props) {
-  return (
-    <div>
-      <h2>{destination.name}</h2>
-      <p>{destination.region}</p>
-    </div>
+export const getDestinations = () => {
+  return axios.get(
+    "http://127.0.0.1:8000/api/destinations/"
   );
-}
-
-export default DestinationCard;
+};

@@ -6,5 +6,4 @@ export interface Destination {
   description: string;
   location: string;
   entry_fee: string;
-  image: string;
-}
+  image: string

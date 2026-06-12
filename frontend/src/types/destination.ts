@@ -7,4 +7,3 @@ export interface Destination {
   location: string;
   entry_fee: string;
   image: string;
-}

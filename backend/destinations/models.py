@@ -16,6 +16,10 @@ class Destination(models.Model):
     description = models.TextField()
 
     location = models.CharField(max_length=255)
+    
+    longitude = models.FloatField()
+
+    latitude = models.FloatField()
 
     entry_fee = models.DecimalField(
         max_digits=10,

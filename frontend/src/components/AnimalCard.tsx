@@ -1,4 +1,4 @@
-import { Animal } from "../types/animal";
+import type { Animal } from "../types/animal";
 
 interface Props {
   animal: Animal;

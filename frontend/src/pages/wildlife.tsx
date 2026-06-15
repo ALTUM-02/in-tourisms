@@ -35,4 +35,4 @@ function Wildlife() {
   );
 }
 
-export default Wildli
+export default Wildlife;

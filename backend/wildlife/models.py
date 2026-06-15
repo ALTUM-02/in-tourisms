@@ -35,4 +35,4 @@ class Animal(models.Model):
         return self.name
     
 from django.db import models
-from destinations.models i
+from destinations

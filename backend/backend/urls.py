@@ -30,6 +30,7 @@ urlpatterns = [
     path('api/', include('users.urls')),
     path('api/', include('wildlife.urls')),
     path('api/',include('hotels.urls')),
+    path('api/', include('foods.urls')),
     path('api/login/', TokenObtainPairView.as_view()),
     path('api/token/refresh/', TokenRefreshView.as_view()),
     path('api/', include('destinations.urls')),

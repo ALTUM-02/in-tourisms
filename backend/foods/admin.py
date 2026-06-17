@@ -18,4 +18,5 @@ class FoodAdmin(admin.ModelAdmin):
     list_filter = (
         'category',
         'destination'
+    )
     

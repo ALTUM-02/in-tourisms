@@ -147,7 +147,7 @@ function Login() {
                   : "password"
               }
               placeholder="Password"
-              value={passw
+              value={password}
               onChange={(e) =>
                 setPassword(e.target.value)
               }

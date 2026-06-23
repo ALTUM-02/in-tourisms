@@ -261,7 +261,7 @@ function Login() {
             className="
             ml-2
             text-yellow-300
-            font-semibold
+            font-se
             "
           >
             Register

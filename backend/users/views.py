@@ -17,9 +17,4 @@ class ProfileView(APIView):
     def get(self, request):
         user = request.user
         
-        return Response({
-            'username': user.username,
-            'email': user.email,
-            'role': user.role,
-            'phone': user.phone,
-            'id': user.id,})
+       

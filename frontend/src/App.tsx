@@ -55,7 +55,7 @@ function App() {
 
       </Routes>
 
-    </BrowserRouter>
+    </BrowserRoute
   );
 }
 

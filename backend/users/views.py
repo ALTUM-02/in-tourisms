@@ -17,4 +17,19 @@ class ProfileView(APIView):
     def get(self, request):
         user = request.user
         
-       
+        return Response({
+            'id': user.id,
+            'username': user.username,
+            'email': user.email,
+            'role': user.role,
+            'phone': user.phone,
+            'full_name': user.full_name,
+            'country': user.country,
+            'profile_photo': (
+                request.build_absolute_uri(
+                    user.profile_photo.url
+                )
+                if user.profile_photo
+                else None
+            )
+        })

@@ -18,8 +18,6 @@ class RegisterSerializer(serializers.ModelSerializer):
             'email',
             'password',
             'role',
-            'phone'
-        
 
     def create(self, validated_data):
 

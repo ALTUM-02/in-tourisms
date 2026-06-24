@@ -40,7 +40,6 @@ class User(AbstractUser):
     role = models.CharField(max_length=20, choices=ROLE_CHOICES, default='tourist')
     
     
-    created_at = models.DateTimeField(auto_now_add=True)
     
     def __str__(self):
         return self.username

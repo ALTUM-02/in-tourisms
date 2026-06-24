@@ -34,6 +34,10 @@ class RegisterSerializer(serializers.ModelSerializer):
             full_name=validated_data.get('full_name', ''),
             country=validated_data.get('country', ''),
             profile_photo=validated_data.get('profile_photo', None)
-        )    
+        )   
+        
+        if 'profile_photo' in validated_data:
+            user.profile_photo = validated_data['profile_photo']
+            user.save() 
 
         return user

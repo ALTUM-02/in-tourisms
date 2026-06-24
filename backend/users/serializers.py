@@ -14,8 +14,7 @@ class RegisterSerializer(serializers.ModelSerializer):
 
         fields = [
             'id',
-            'username',
-            'email',
+            'username'
 
     def create(self, validated_data):
 

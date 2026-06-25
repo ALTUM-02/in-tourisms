@@ -1,97 +1,93 @@
-import { motion, useMotionValue, useTransform } from "framer-motion";
-import { useRef } from "react";
+import { useEffect, useState, useRef } from "react";
+import axios from "axios";
+
+type ImageItem = {
+  id: number;
+  url: string;
+};
 
 export default function HeroSection() {
-  const cardRef = useRef<HTMLDivElement>(null);
+  const [images, setImages] = useState<ImageItem[]>([]);
+  const containerRef = useRef<HTMLDivElement>(null);
 
-  // Mouse position values
-  const x = useMotionValue(0);
-  const y = useMotionValue(0);
+  useEffect(() => {
+    // Example API (replace with your backend)
+    axios.get("https://api.unsplash.com/photos/random?count=6&client_id=YOUR_KEY")
+      .then((res) => {
+        const formatted = res.data.map((img: any, index: number) => ({
+          id: index,
+          url: img.urls.small,
+        }));
+        setImages(formatted);
+      })
+      .catch(console.error);
+  }, []);
 
-  // Transform for 3D tilt effect
-  const rotateX = useTransform(y, [-50, 50], [10, -10]);
-  const rotateY = useTransform(x, [-50, 50], [-10, 10]);
+  const handleMouseMove = (e: React.MouseEvent) => {
+    if (!containerRef.current) return;
 
-  function handleMouseMove(e: React.MouseEvent) {
-    const rect = cardRef.current?.getBoundingClientRect();
-    if (!rect) return;
+    const { left, top, width, height } =
+      containerRef.current.getBoundingClientRect();
 
-    const width = rect.width;
-    const height = rect.height;
+    const x = (e.clientX - left - width / 2) / 25;
+    const y = (e.clientY - top - height / 2) / 25;
 
-    const offsetX = e.clientX - rect.left - width / 2;
-    const offsetY = e.clientY - rect.top - height / 2;
+    const items = containerRef.current.querySelectorAll(".parallax");
 
-    x.set(offsetX);
-    y.set(offsetY);
-  }
-
-  function handleMouseLeave() {
-    x.set(0);
-    y.set(0);
-  }
+    items.forEach((item, index) => {
+      const depth = (index + 1) * 6;
+      (item as HTMLElement).style.transform =
+        `translate(${x * depth}px, ${y * depth}px) rotate(${x}deg)`;
+    });
+  };
 
   return (
-    <section className="w-full min-h-screen flex items-center justify-center bg-gradient from-sky-50 to-white px-6">
+    <section className="w-full min-h-screen flex items-center justify-center bg-[#0b0b0f]">
+      
+      {/* HERO CARD */}
+      <div
+        ref={containerRef}
+        onMouseMove={handleMouseMove}
+        className="relative w-900px h-500px rounded-3xl bg-white/5 backdrop-blur-xl border border-white/10 shadow-2xl overflow-hidden"
+      >
 
-      <div className="grid md:grid-cols-2 gap-10 items-center max-w-6xl w-full">
-
-        {/* TEXT SECTION */}
-        <div>
-          <h1 className="text-4xl md:text-5xl font-bold text-gray-900 leading-tight">
-            Discover Tanzania's
-            <span className="text-sky-500"> Hidden Paradise</span>
+        {/* LEFT TEXT */}
+        <div className="absolute left-10 top-1/2 -translate-y-1/2 z-20 text-white">
+          <h1 className="text-5xl font-bold leading-tight">
+            Discover
+            <br />
+            Beautiful Places
           </h1>
-
-          <p className="mt-4 text-gray-600 text-lg">
-            Explore wildlife, beaches, mountains, and unforgettable adventures
-            with AI-powered travel planning.
+          <p className="text-white/60 mt-4 max-w-sm">
+            Explore curated destinations with interactive visual experience.
           </p>
 
-          <div className="mt-6 flex gap-4">
-            <button className="px-6 py-3 bg-sky-500 text-white rounded-xl shadow hover:bg-sky-600 transition">
-              Explore Now
-            </button>
-
-            <button className="px-6 py-3 border border-gray-300 rounded-xl hover:bg-gray-100 transition">
-              Learn More
-            </button>
-          </div>
+          <button className="mt-6 px-6 py-3 rounded-full bg-white text-black font-medium hover:scale-105 transition">
+            Explore Now
+          </button>
         </div>
 
-        {/* IMAGE CARD */}
-        <div className="flex justify-center">
-          <motion.div
-            ref={cardRef}
-            onMouseMove={handleMouseMove}
-            onMouseLeave={handleMouseLeave}
-            style={{
-              rotateX,
-              rotateY,
-              perspective: 1000,
-            }}
-            className="w-340px h-420px rounded-3xl overflow-hidden shadow-2xl cursor-pointer bg-white"
-          >
-            {/* Image */}
-            <motion.img
-              src="https://images.unsplash.com/photo-1500530855697-b586d89ba3ee"
-              alt="Tanzania Safari"
-              className="w-full h-full object-cover scale-110"
-              whileHover={{ scale: 1.15 }}
-              transition={{ type: "spring", stiffness: 120 }}
+        {/* FLOATING IMAGE STACK */}
+        <div className="absolute right-10 top-1/2 -translate-y-1/2 w-420px h-420px">
+          {images.map((img, i) => (
+            <img
+              key={img.id}
+              src={img.url}
+              className={`parallax absolute rounded-2xl shadow-xl object-cover transition-transform duration-300 ease-out
+                ${i === 0 ? "w-72 h-96 z-50" : ""}
+                ${i === 1 ? "w-64 h-80 top-10 left-10 z-40" : ""}
+                ${i === 2 ? "w-56 h-72 top-20 left-20 z-30" : ""}
+                ${i === 3 ? "w-52 h-64 top-28 left-28 z-20" : ""}
+              `}
+              style={{
+                transform: `translate(${i * 8}px, ${i * 8}px)`,
+              }}
             />
-
-            {/* Overlay */}
-            <div className="absolute inset-0 bg-gradient- from-black/40 to-transparent" />
-
-            {/* Card Label */}
-            <div className="absolute bottom-5 left-5 text-white">
-              <h3 className="text-xl font-semibold">Serengeti Safari</h3>
-              <p className="text-sm opacity-80">Wildlife Experience</p>
-            </div>
-          </motion.div>
+          ))}
         </div>
 
+        {/* GLOW EFFECT */}
+        <div className="absolute inset-0 bg-gradient from-purple-500/10 to-cyan-500/10 pointer-events-none" />
       </div>
     </section>
   );

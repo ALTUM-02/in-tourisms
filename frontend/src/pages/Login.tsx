@@ -1,15 +1,15 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
-
 import {
-  FaEye,
-  FaEyeSlash,
-  FaEnvelope,
-  FaLock,
-} from "react-icons/fa";
+  Eye,
+  EyeOff,
+  Mail,
+  Lock,
+} from "lucide-react";
 
 function Login() {
-  const [showPassword, setShowPassword] =
+  const [showPassword,
+    setShowPassword] =
     useState(false);
 
   const [email, setEmail] =
@@ -28,8 +28,7 @@ function Login() {
       password,
     });
 
-    // TODO:
-    // Connect Django JWT Login API here
+    // JWT Login API
   };
 
   return (
@@ -39,231 +38,276 @@ function Login() {
       flex
       items-center
       justify-center
-      bg-gray-100
-      px-4
+      bg-slate-100
+      p-6
       "
     >
       <div
         className="
         w-full
-        max-w-md
-        bg-white
+        max-w-6xl
+        grid
+        md:grid-cols-2
         rounded-2xl
-        shadow-xl
-        p-8
+        overflow-hidden
+        shadow-2xl
         "
       >
-        <div className="text-center mb-8">
+
+        {/* LEFT */}
+
+        <div
+          className="
+          bg-white
+          p-10
+          flex
+          flex-col
+          justify-center
+          "
+        >
           <h1
             className="
             text-3xl
             font-bold
-            text-gray-800
+            mb-8
             "
           >
             Welcome Back
           </h1>
 
-          <p
-            className="
-            text-gray-500
-            mt-2
-            "
+          <form
+            onSubmit={handleSubmit}
+            className="space-y-5"
           >
-            Login to your Tourism Account
-          </p>
-        </div>
 
-        <form
-          onSubmit={handleSubmit}
-          className="space-y-5"
-        >
-          {/* EMAIL */}
+            <div className="relative">
 
-          <div className="relative">
-            <div
-              className="
-              absolute
-              left-3
-              top-1/2
-              -translate-y-1/2
-              text-gray-500
-              "
-            >
-              <FaEnvelope size={18} />
-            </div>
-
-            <input
-              type="email"
-              placeholder="Email Address"
-              value={email}
-              onChange={(e) =>
-                setEmail(e.target.value)
-              }
-              className="
-              w-full
-              border
-              border-gray-300
-              rounded-lg
-              pl-10
-              pr-4
-              py-3
-              focus:outline-none
-              focus:ring-2
-              focus:ring-blue-500
-              "
-              required
-            />
-          </div>
-
-          {/* PASSWORD */}
-
-          <div className="relative">
-            <div
-              className="
-              absolute
-              left-3
-              top-1/2
-              -translate-y-1/2
-              text-gray-500
-              "
-            >
-              <FaLock size={18} />
-            </div>
-
-            <input
-              type={
-                showPassword
-                  ? "text"
-                  : "password"
-              }
-              placeholder="Password"
-              value={password}
-              onChange={(e) =>
-                setPassword(
-                  e.target.value
-                )
-              }
-              className="
-              w-full
-              border
-              border-gray-300
-              rounded-lg
-              pl-10
-              pr-12
-              py-3
-              focus:outline-none
-              focus:ring-2
-              focus:ring-blue-500
-              "
-              required
-            />
-
-            <button
-              type="button"
-              onClick={() =>
-                setShowPassword(
-                  !showPassword
-                )
-              }
-              className="
-              absolute
-              right-3
-              top-1/2
-              -translate-y-1/2
-              text-gray-500
-              "
-            >
-              {showPassword ? (
-                <FaEyeSlash size={18} />
-              ) : (
-                <FaEye size={18} />
-              )}
-            </button>
-          </div>
-
-          {/* REMEMBER ME */}
-
-          <div
-            className="
-            flex
-            justify-between
-            items-center
-            text-sm
-            "
-          >
-            <label
-              className="
-              flex
-              items-center
-              gap-2
-              "
-            >
-              <input
-                type="checkbox"
+              <Mail
+                size={18}
+                className="
+                absolute
+                left-3
+                top-4
+                text-gray-500
+                "
               />
 
-              Remember Me
-            </label>
+              <input
+                type="email"
+                placeholder="Email"
+                value={email}
+                onChange={(e)=>
+                  setEmail(
+                    e.target.value
+                  )
+                }
+                className="
+                w-full
+                border
+                rounded-lg
+                pl-10
+                py-3
+                "
+              />
 
-            <Link
-              to="#"
+            </div>
+
+            <div className="relative">
+
+              <Lock
+                size={18}
+                className="
+                absolute
+                left-3
+                top-4
+                text-gray-500
+                "
+              />
+
+              <input
+                type={
+                  showPassword
+                  ? "text"
+                  : "password"
+                }
+                placeholder="Password"
+                value={password}
+                onChange={(e)=>
+                  setPassword(
+                    e.target.value
+                  )
+                }
+                className="
+                w-full
+                border
+                rounded-lg
+                pl-10
+                pr-10
+                py-3
+                "
+              />
+
+              <button
+                type="button"
+                onClick={() =>
+                  setShowPassword(
+                    !showPassword
+                  )
+                }
+                className="
+                absolute
+                right-3
+                top-4
+                "
+              >
+                {
+                  showPassword
+                  ? <EyeOff size={18}/>
+                  : <Eye size={18}/>
+                }
+              </button>
+
+            </div>
+
+            <div
               className="
-              text-blue-600
-              hover:underline
+              flex
+              justify-between
+              text-sm
               "
             >
-              Forgot Password?
-            </Link>
-          </div>
+              <label>
+                <input
+                  type="checkbox"
+                />
+                <span className="ml-2">
+                  Remember Me
+                </span>
+              </label>
 
-          {/* LOGIN BUTTON */}
+              <Link
+                to="#"
+                className="
+                text-emerald-600
+                "
+              >
+                Forgot Password?
+              </Link>
+            </div>
 
-          <button
-            type="submit"
+            <button
+              className="
+              w-full
+              bg-emerald-600
+              hover:bg-emerald-700
+              text-white
+              py-3
+              rounded-lg
+              "
+            >
+              Login
+            </button>
+
+          </form>
+
+          <p
             className="
-            w-full
-            bg-blue-600
-            hover:bg-blue-700
-            text-white
-            font-semibold
-            py-3
-            rounded-lg
-            transition
-            "
-          >
-            Login
-          </button>
-        </form>
-
-        {/* REGISTER LINK */}
-
-        <div
-          className="
-          text-center
-          mt-6
-          "
-        >
-          <span
-            className="
-            text-gray-600
+            text-center
+            mt-6
             "
           >
             Don't have an account?
-          </span>
 
-          <Link
-            to="/register"
+            <Link
+              to="/register"
+              className="
+              ml-2
+              text-emerald-600
+              "
+            >
+              Register
+            </Link>
+          </p>
+
+        </div>
+
+        {/* RIGHT */}
+
+        <div
+          className="
+          relative
+          bg-cover
+          bg-center
+          "
+          style={{
+            backgroundImage:
+              "url('https://images.unsplash.com/photo-1516026672322-bc52d61a55d5')",
+          }}
+        >
+          <div
             className="
-            ml-2
-            text-blue-600
-            font-semibold
-            hover:underline
+            absolute
+            inset-0
+            bg-black/40
+            "
+          />
+
+          <div
+            className="
+            relative
+            z-10
+            h-full
+            flex
+            flex-col
+            justify-center
+            px-12
+            text-white
             "
           >
-            Register
-          </Link>
+
+            <h1
+              className="
+              text-5xl
+              font-bold
+              mb-6
+              "
+            >
+              DISCOVER
+              TANZANIA
+            </h1>
+
+            <div
+              className="
+              space-y-3
+              text-lg
+              "
+            >
+              <p>
+                🦁 Wildlife Safari
+              </p>
+
+              <p>
+                🏨 Hotels & Lodges
+              </p>
+
+              <p>
+                🍽 Foods & Drinks
+              </p>
+
+              <p>
+                🤖 AI Travel Assistant
+              </p>
+
+              <p>
+                💬 Live Tourism Chat
+              </p>
+
+            </div>
+
+          </div>
+
         </div>
+
       </div>
     </div>
   );

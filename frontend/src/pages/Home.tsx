@@ -67,18 +67,18 @@ export default function Home() {
             <a href="#ai-assistant" className="text-amber-600" onClick={() => setIsOpen(false)}>AI Travel Mate</a>
             <div className="flex flex-col space-y-2 pt-4 border-t">
               <Link
-  to="/login"
-  className="w-full px-4 py-2 border border-amber-600 text-amber-600 rounded-lg text-center"
->
-  Log In
-</Link>
+                to="/login"
+                className="w-full px-4 py-2 border border-amber-600 text-amber-600 rounded-lg text-center"
+              >
+                Log In
+              </Link>
 
-<Link
-  to="/register"
-  className="w-full px-4 py-2 bg-amber-600 text-white rounded-lg text-center"
->
-  Register
-</Link>
+              <Link
+                to="/register"
+                className="w-full px-4 py-2 bg-amber-600 text-white rounded-lg text-center"
+              >
+                Register
+              </Link>
             </div>
           </div>
         )}

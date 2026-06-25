@@ -1,131 +1,154 @@
-// HeroSection.tsx
+import { motion, useMotionValue, useTransform } from "framer-motion";
+import { useState } from "react";
 
-import { useEffect, useState } from "react";
-
-export default function HeroSection() {
-  const [position, setPosition] = useState({
+export default function Hero() {
+  const [mousePosition, setMousePosition] = useState({
     x: 0,
     y: 0,
   });
 
-  useEffect(() => {
-    const handleMouseMove = (e: MouseEvent) => {
-      const x = (e.clientX - window.innerWidth / 2) / 50;
-      const y = (e.clientY - window.innerHeight / 2) / 50;
+  const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
+    const { clientX, clientY } = e;
 
-      setPosition({ x, y });
-    };
+    setMousePosition({
+      x: clientX,
+      y: clientY,
+    });
+  };
 
-    window.addEventListener("mousemove", handleMouseMove);
+  const x = useMotionValue(0);
+  const y = useMotionValue(0);
 
-    return () =>
-      window.removeEventListener(
-        "mousemove",
-        handleMouseMove
-      );
-  }, []);
+  x.set(mousePosition.x);
+  y.set(mousePosition.y);
+
+  const moveX = useTransform(x, [0, window.innerWidth], [-25, 25]);
+  const moveY = useTransform(y, [0, window.innerHeight], [-25, 25]);
 
   return (
-    <section className="relative min-h-screen bg-[#f8f7f3] overflow-hidden flex items-center justify-center px-6">
-      <div className="max-w-7xl w-full grid lg:grid-cols-2 gap-10 items-center">
+    <section
+      onMouseMove={handleMouseMove}
+      className="relative h-screen overflow-hidden"
+    >
+      {/* Background Image */}
+      <div
+        className="absolute inset-0 bg-cover bg-center scale-110"
+        style={{
+          backgroundImage:
+            "url('https://images.unsplash.com/photo-1516026672322-bc52d61a55d5')",
+        }}
+      />
 
-        {/* LEFT CONTENT */}
-        <div className="z-20">
-          <span className="px-4 py-2 rounded-full bg-green-100 text-green-700 font-medium">
-            Discover Tanzania
-          </span>
+      {/* Dark Overlay */}
+      <div className="absolute inset-0 bg-black/50" />
 
-          <h1 className="mt-6 text-5xl lg:text-7xl font-bold leading-tight">
-            Explore The
-            <br />
-            Beauty Of
-            <span className="text-green-600">
-              {" "}Tanzania
-            </span>
-          </h1>
+      {/* Floating Images */}
 
-          <p className="mt-6 text-gray-600 text-lg max-w-lg">
-            Experience wildlife safaris, beautiful beaches,
-            luxury hotels and unforgettable adventures.
-          </p>
+      <motion.img
+        style={{
+          x: moveX,
+          y: moveY,
+        }}
+        src="https://images.unsplash.com/photo-1506744038136-46273834b3fb"
+        alt=""
+        className="absolute top-24 left-10 w-52 h-72 object-cover rounded-3xl shadow-2xl border-4 border-white"
+      />
 
-          <div className="mt-8 flex gap-4">
-            <button className="px-7 py-4 rounded-full bg-green-600 text-white font-semibold hover:bg-green-700 transition">
-              Explore Now
-            </button>
+      <motion.img
+        animate={{
+          y: [0, -15, 0],
+        }}
+        transition={{
+          repeat: Infinity,
+          duration: 5,
+        }}
+        src="https://images.unsplash.com/photo-1518509562904-e7ef99cdcc86"
+        alt=""
+        className="absolute top-40 right-20 w-64 h-80 object-cover rounded-3xl shadow-2xl border-4 border-white"
+      />
 
-            <button className="px-7 py-4 rounded-full border border-gray-300 hover:bg-white transition">
-              Watch Video
-            </button>
+      <motion.img
+        animate={{
+          y: [0, 15, 0],
+        }}
+        transition={{
+          repeat: Infinity,
+          duration: 4,
+        }}
+        src="https://images.unsplash.com/photo-1528127269322-539801943592"
+        alt=""
+        className="absolute bottom-16 left-32 w-44 h-60 object-cover rounded-3xl shadow-2xl border-4 border-white"
+      />
+
+      {/* Main Content */}
+      <div className="relative z-20 flex h-full items-center">
+        <div className="container mx-auto px-6">
+          <div className="max-w-3xl">
+            <motion.p
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.3 }}
+              className="text-yellow-400 font-semibold tracking-widest uppercase"
+            >
+              Discover Tanzania
+            </motion.p>
+
+            <motion.h1
+              initial={{ opacity: 0, y: 40 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.5 }}
+              className="text-white text-6xl md:text-8xl font-bold leading-tight"
+            >
+              Explore The Beauty Of Tanzania
+            </motion.h1>
+
+            <motion.p
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ delay: 0.8 }}
+              className="text-gray-200 mt-6 text-lg"
+            >
+              Experience wildlife safaris, breathtaking landscapes,
+              luxury hotels and unforgettable adventures.
+            </motion.p>
+
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ delay: 1 }}
+              className="mt-8 flex gap-4"
+            >
+              <button className="bg-yellow-500 hover:bg-yellow-600 px-8 py-4 rounded-full text-black font-semibold transition">
+                Explore Now
+              </button>
+
+              <button className="border border-white text-white px-8 py-4 rounded-full hover:bg-white hover:text-black transition">
+                View Destinations
+              </button>
+            </motion.div>
           </div>
-        </div>
-
-        {/* RIGHT IMAGE CARD */}
-        <div className="relative h-650px">
-
-          {/* Main Image */}
-          <div
-            className="absolute right-0 top-0 w-500px h-620px rounded-[40px] overflow-hidden shadow-2xl transition-all duration-300"
-            style={{
-              transform: `translate(${position.x}px, ${position.y}px)`,
-            }}
-          >
-            <img
-              src="/public/images/Serengeti.jpg"
-              alt="serengeti"
-              className="w-full h-full object-cover"
-            />
-          </div>
-
-          {/* Floating Card 1 */}
-          <div
-            className="absolute left-0 top-20 w-56 h-72 rounded-3xl overflow-hidden shadow-xl transition-all duration-300"
-            style={{
-              transform: `translate(${
-                -position.x * 1.5
-              }px, ${-position.y * 1.5}px)`,
-            }}
-          >
-            <img
-              src="/images/zanzibar.jpg"
-              alt=""
-              className="w-full h-full object-cover"
-            />
-          </div>
-
-          {/* Floating Card 2 */}
-          <div
-            className="absolute right-10 bottom-0 w-64 h-44 rounded-3xl overflow-hidden shadow-xl transition-all duration-300"
-            style={{
-              transform: `translate(${
-                position.x * 2
-              }px, ${position.y * 2}px)`,
-            }}
-          >
-            <img
-              src="/images/kilimanjaro.jpg"
-              alt=""
-              className="w-full h-full object-cover"
-            />
-          </div>
-
-          {/* Floating Info Card */}
-          <div className="absolute left-10 bottom-20 bg-white/80 backdrop-blur-md rounded-3xl p-5 shadow-xl">
-            <p className="text-sm text-gray-500">
-              Popular Destination
-            </p>
-
-            <h3 className="font-bold text-xl">
-              Serengeti Safari
-            </h3>
-
-            <p className="text-green-600 font-semibold">
-              ⭐ 4.9 Rating
-            </p>
-          </div>
-
         </div>
       </div>
+
+      {/* Glass Card */}
+      <motion.div
+        animate={{
+          y: [0, -10, 0],
+        }}
+        transition={{
+          repeat: Infinity,
+          duration: 4,
+        }}
+        className="absolute bottom-10 right-10 z-30 backdrop-blur-lg bg-white/10 border border-white/20 rounded-3xl p-6 w-80"
+      >
+        <h3 className="text-white text-xl font-bold">
+          Serengeti National Park
+        </h3>
+
+        <p className="text-gray-300 mt-2">
+          Witness the Great Migration and Africa's most iconic wildlife.
+        </p>
+      </motion.div>
     </section>
   );
 }

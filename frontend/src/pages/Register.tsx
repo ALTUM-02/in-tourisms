@@ -1,5 +1,7 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
+import { registerUser } from "../services/authService";
+import { useNavigate } from "react-router-dom";
 
 import {
   Eye,
@@ -40,26 +42,72 @@ function Register() {
     });
   };
 
-  const handleSubmit = (
-    e: React.FormEvent
-  ) => {
-    e.preventDefault();
+  const handleSubmit = async (
+  e: React.FormEvent
+) => {
 
-    if (
-      formData.password !==
-      formData.confirmPassword
-    ) {
+  e.preventDefault();
+
+  if (
+    formData.password !==
+    formData.confirmPassword
+  ) {
+
+    alert("Passwords do not match");
+    return;
+
+  }
+
+  try {
+
+    const response =
+      await registerUser({
+
+        username: formData.username,
+
+        email: formData.email,
+
+        password: formData.password,
+
+        phone: formData.phone,
+
+        full_name: formData.full_name,
+
+        country: formData.country,
+
+        role: "tourist",
+
+      });
+
+    console.log(response.data);
+
+    alert("Registration successful!");
+
+    navigate("/login");
+
+  } catch (error: any) {
+
+    console.error(error);
+
+    if (error.response) {
+
       alert(
-        "Passwords do not match"
+        JSON.stringify(
+          error.response.data
+        )
       );
-      return;
+
+    } else {
+
+      alert(
+        "Unable to connect to server."
+      );
+
     }
 
-    console.log(formData);
+  }
 
-    // TODO:
-    // Connect Django Register API
-  };
+};
 
   return (
     <div className="min-h-screen bg-slate-900 flex items-center justify-center p-6">

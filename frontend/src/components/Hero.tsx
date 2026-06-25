@@ -1,89 +1,97 @@
-import {useState} from 'react';
-import { ArrowRight, Play } from 'lucide-react';
+import { motion, useMotionValue, useTransform } from "framer-motion";
+import { useRef } from "react";
 
-export default function Hero() {
+export default function HeroSection() {
+  const cardRef = useRef<HTMLDivElement>(null);
+
+  // Mouse position values
+  const x = useMotionValue(0);
+  const y = useMotionValue(0);
+
+  // Transform for 3D tilt effect
+  const rotateX = useTransform(y, [-50, 50], [10, -10]);
+  const rotateY = useTransform(x, [-50, 50], [-10, 10]);
+
+  function handleMouseMove(e: React.MouseEvent) {
+    const rect = cardRef.current?.getBoundingClientRect();
+    if (!rect) return;
+
+    const width = rect.width;
+    const height = rect.height;
+
+    const offsetX = e.clientX - rect.left - width / 2;
+    const offsetY = e.clientY - rect.top - height / 2;
+
+    x.set(offsetX);
+    y.set(offsetY);
+  }
+
+  function handleMouseLeave() {
+    x.set(0);
+    y.set(0);
+  }
+
   return (
-    <section className="relative overflow-hidden bg-slate-950 text-white">
-      {/* Background Decor */}
-      <div className="absolute inset-0 z-0">
-        <div className="absolute top-1/4 left-1/4 h-96 w-96 -translate-x-1/2 -translate-y-1/2 rounded-full bg-indigo-500/20 blur-3xl filter" />
-        <div className="absolute bottom-1/4 right-1/4 h-96 w-96 translate-x-1/2 translate-y-1/2 rounded-full bg-blue-500/20 blur-3xl filter" />
-      </div>
+    <section className="w-full min-h-screen flex items-center justify-center bg-gradient from-sky-50 to-white px-6">
 
-      <div className="mx-auto max-w-7xl px-4 py-24 sm:px-6 lg:px-8 lg:py-32 relative z-10">
-        <div className="grid grid-cols-1 gap-12 lg:grid-cols-2 lg:items-center lg:gap-8">
-          {/* Left Column: Text Content */}
-          <div className="max-w-2xl text-center lg:text-left">
-            {/* Badge */}
-            <div className="inline-flex items-center rounded-full border border-indigo-500/30 bg-indigo-500/10 px-3 py-1 text-xs font-medium text-indigo-300 backdrop-blur">
-              What's New in 2026? <ArrowRight className="ml-1.5 h-3 w-3" />
-            </div>
+      <div className="grid md:grid-cols-2 gap-10 items-center max-w-6xl w-full">
 
-            {/* Headline */}
-            <h1 className="mt-6 text-4xl font-bold tracking-tight sm:text-6xl bg-gradient-to-r from-white via-indigo-200 to-blue-300 bg-clip-text text-transparent">
-              Build the future with modern web experiences.
-            </h1>
+        {/* TEXT SECTION */}
+        <div>
+          <h1 className="text-4xl md:text-5xl font-bold text-gray-900 leading-tight">
+            Discover Tanzania's
+            <span className="text-sky-500"> Hidden Paradise</span>
+          </h1>
 
-            {/* Subheading */}
-            <p className="mt-4 text-lg text-slate-400">
-              Empower your workflows, scale effortlessly, and deliver breathtaking user interfaces. Start your journey today with our cutting-edge components and frameworks.
-            </p>
+          <p className="mt-4 text-gray-600 text-lg">
+            Explore wildlife, beaches, mountains, and unforgettable adventures
+            with AI-powered travel planning.
+          </p>
 
-            {/* CTA Buttons */}
-            <div className="mt-10 flex flex-col items-center justify-center gap-4 sm:flex-row lg:justify-start">
-              <a
-                href="#get-started"
-                className="inline-flex w-full items-center justify-center rounded-xl bg-indigo-600 px-8 py-4 font-semibold text-white shadow-lg shadow-indigo-600/20 transition-all hover:bg-indigo-500 hover:shadow-indigo-600/30 sm:w-auto"
-              >
-                Start Building
-                <ArrowRight className="ml-2 h-5 w-5" />
-              </a>
-              <a
-                href="#watch-demo"
-                className="inline-flex w-full items-center justify-center rounded-xl border border-slate-800 bg-slate-900/50 px-8 py-4 font-semibold text-slate-300 backdrop-blur transition-all hover:bg-slate-800 hover:text-white sm:w-auto"
-              >
-                <Play className="mr-2 h-5 w-5 fill-current" />
-                See Demo
-              </a>
-            </div>
+          <div className="mt-6 flex gap-4">
+            <button className="px-6 py-3 bg-sky-500 text-white rounded-xl shadow hover:bg-sky-600 transition">
+              Explore Now
+            </button>
 
-            {/* Social Proof / Stats */}
-            <div className="mt-16 flex justify-center gap-8 lg:justify-start">
-              <div>
-                <p className="text-2xl font-bold text-white">99.9%</p>
-                <p className="text-xs text-slate-500">Uptime</p>
-              </div>
-              <div>
-                <p className="text-2xl font-bold text-white">2M+</p>
-                <p className="text-xs text-slate-500">Users</p>
-              </div>
-              <div>
-                <p className="text-2xl font-bold text-white">4.9/5</p>
-                <p className="text-xs text-slate-500">Rating</p>
-              </div>
-            </div>
-          </div>
-
-          {/* Right Column: Visual Component / Illustration */}
-          <div className="flex items-center justify-center lg:justify-end">
-            <div className="relative h-72 w-full max-w-md overflow-hidden rounded-2xl border border-slate-800 bg-slate-900/50 shadow-2xl backdrop-blur sm:h-96">
-              {/* Decorative grid pattern to simulate a dashboard / code editor */}
-              <div className="absolute inset-0 bg-[linear-gradient(to_right,#1e293b_1px,transparent_1px),linear-gradient(to_bottom,#1e293b_1px,transparent_1px)] bg-[size:32px_32px]" />
-              <div className="absolute flex items-center justify-center inset-0">
-                <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-indigo-500/10 text-indigo-400">
-                  <ArrowRight className="h-8 w-8" />
-                </div>
-              </div>
-              {/* Optional Glassmorphic Float Panel */}
-              <div className="absolute bottom-4 left-4 right-4 rounded-xl border border-slate-800 bg-slate-950/80 p-4 backdrop-blur">
-                <div className="flex items-center gap-3">
-                  <div className="h-3 w-3 rounded-full bg-green-500" />
-                  <p className="text-xs font-medium text-slate-300">System is fully operational</p>
-                </div>
-              </div>
-            </div>
+            <button className="px-6 py-3 border border-gray-300 rounded-xl hover:bg-gray-100 transition">
+              Learn More
+            </button>
           </div>
         </div>
+
+        {/* IMAGE CARD */}
+        <div className="flex justify-center">
+          <motion.div
+            ref={cardRef}
+            onMouseMove={handleMouseMove}
+            onMouseLeave={handleMouseLeave}
+            style={{
+              rotateX,
+              rotateY,
+              perspective: 1000,
+            }}
+            className="w-340px h-420px rounded-3xl overflow-hidden shadow-2xl cursor-pointer bg-white"
+          >
+            {/* Image */}
+            <motion.img
+              src="https://images.unsplash.com/photo-1500530855697-b586d89ba3ee"
+              alt="Tanzania Safari"
+              className="w-full h-full object-cover scale-110"
+              whileHover={{ scale: 1.15 }}
+              transition={{ type: "spring", stiffness: 120 }}
+            />
+
+            {/* Overlay */}
+            <div className="absolute inset-0 bg-gradient- from-black/40 to-transparent" />
+
+            {/* Card Label */}
+            <div className="absolute bottom-5 left-5 text-white">
+              <h3 className="text-xl font-semibold">Serengeti Safari</h3>
+              <p className="text-sm opacity-80">Wildlife Experience</p>
+            </div>
+          </motion.div>
+        </div>
+
       </div>
     </section>
   );

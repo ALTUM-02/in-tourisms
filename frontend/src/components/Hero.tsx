@@ -61,18 +61,18 @@ export default function HeroSection() {
         </div>
 
         {/* RIGHT IMAGE CARD */}
-        <div className="relative h-[650px]">
+        <div className="relative h-650px">
 
           {/* Main Image */}
           <div
-            className="absolute right-0 top-0 w-[500px] h-[620px] rounded-[40px] overflow-hidden shadow-2xl transition-all duration-300"
+            className="absolute right-0 top-0 w-500px h-620px rounded-[40px] overflow-hidden shadow-2xl transition-all duration-300"
             style={{
               transform: `translate(${position.x}px, ${position.y}px)`,
             }}
           >
             <img
-              src="/images/safari.jpg"
-              alt=""
+              src="/public/images/Serengeti.jpg"
+              alt="serengeti"
               className="w-full h-full object-cover"
             />
           </div>

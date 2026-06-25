@@ -114,7 +114,7 @@ export default function Home() {
           {destinations.map((dest, i) => (
             <div key={i} className="rounded-2xl overflow-hidden shadow-lg group cursor-pointer relative h-64">
               <img src={dest.image} alt={dest.name} className="w-full h-full object-cover group-hover:scale-105 transition duration-300" />
-              <div className="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent p-6 flex flex-col justify-end">
+              <div className="absolute inset-0 bg-gradient  from-black/80 to-transparent p-6 flex flex-col justify-end">
                 <span className="text-amber-400 text-sm font-semibold tracking-wide uppercase">{dest.type}</span>
                 <h3 className="text-white text-xl font-bold">{dest.name}</h3>
               </div>
@@ -187,6 +187,4 @@ export default function Home() {
     </div>
   );
 
- 
-
-export default Home;      
+} 

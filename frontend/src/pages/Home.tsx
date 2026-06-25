@@ -1,4 +1,5 @@
 import  { useState } from 'react';
+import { Link } from "react-router-dom";
 import { Menu, X, Search, Compass, MapPin, Calendar, Utensils, Hotel, Sparkles, MessageSquare } from 'lucide-react';
 
 export default function Home() {
@@ -156,3 +157,15 @@ export default function Home() {
               <div>
                 <h4 className="font-semibold text-sm">Zuri, Your Travel Guide</h4>
                 <span className="text-xs text-amber-300">Online</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+    </div>
+  );
+
+ 
+
+export default Home;      

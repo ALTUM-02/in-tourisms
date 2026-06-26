@@ -30,6 +30,7 @@ urlpatterns = [
     path('api/auth/', include('users.urls')),
     path('api/wildlife/', include('wildlife.urls')),
     path('api/hotels/', include('hotels.urls')),
+    path('api/dashboard/', include('dashboard.urls')),
     path('api/foods/', include('foods.urls')),
     path('api/auth/login/', TokenObtainPairView.as_view()),
     path('api/auth/token/refresh/', TokenRefreshView.as_view()),

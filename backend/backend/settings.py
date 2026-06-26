@@ -46,7 +46,7 @@ INSTALLED_APPS = [
     'channels',
     
     'users',
-    
+    'dashboard'
     'destinations',
     'wildlife',
     'hotels',

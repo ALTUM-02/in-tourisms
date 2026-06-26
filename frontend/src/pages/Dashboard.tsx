@@ -1,91 +1,49 @@
-import { useEffect, useState } from "react";
-
 import DashboardLayout from "../components/dashboard/DashboardLayout";
 
 import Hero from "../components/dashboard/Hero";
 
-import StatisticCard from "../components/dashboard/StatisticCard";
+import StatsCards from "../components/dashboard/StatsCards";
 
-import DestinationSlider from "../components/dashboard/DestinationSlider";
+import FeaturedDestinations from "../components/dashboard/FeaturedDestinations";
 
-import WildlifeSlider from "../components/dashboard/WildlifeSlider";
+import WildlifeSection from "../components/dashboard/WildlifeSection";
 
-import HotelSlider from "../components/dashboard/HotelSlider";
+import HotelSection from "../components/dashboard/HotelSection";
 
-import FoodSlider from "../components/dashboard/FoodSlider";
+import FoodSection from "../components/dashboard/FoodSection";
 
-import { getDashboard } from "../services/dashboardService";
+import AIAssistant from "../components/dashboard/AIAssistant";
 
-function Dashboard(){
+import LiveChat from "../components/dashboard/LiveChat";
 
-const [dashboard,setDashboard]=useState<any>(null);
+import MapSection from "../components/dashboard/MapSection";
 
-useEffect(()=>{
+export default function Dashboard() {
 
-getDashboard().then((res)=>{
+    return (
 
-setDashboard(res.data);
+        <DashboardLayout>
 
-});
+            <Hero/>
 
-},[]);
+            <StatsCards/>
 
-if(!dashboard){
+            <FeaturedDestinations/>
 
-return <h1>Loading...</h1>
+            <WildlifeSection/>
 
-}
+            <HotelSection/>
 
-return(
+            <FoodSection/>
 
-<DashboardLayout>
+            <AIAssistant/>
 
-<Hero user={dashboard.user}/>
+            <LiveChat/>
 
-<div className="grid md:grid-cols-4 gap-5">
+            <MapSection/>
 
-<StatisticCard
-title="Destinations"
-value={dashboard.statistics.destinations}
-/>
+        </DashboardLayout>
 
-<StatisticCard
-title="Wildlife"
-value={dashboard.statistics.animals}
-/>
-
-<StatisticCard
-title="Hotels"
-value={dashboard.statistics.hotels}
-/>
-
-<StatisticCard
-title="Foods"
-value={dashboard.statistics.foods}
-/>
-
-</div>
-
-<DestinationSlider
-destinations={dashboard.featured_destinations}
-/>
-
-<WildlifeSlider
-animals={dashboard.featured_animals}
-/>
-
-<HotelSlider
-hotels={dashboard.featured_hotels}
-/>
-
-<FoodSlider
-foods={dashboard.featured_foods}
-/>
-
-</DashboardLayout>
-
-);
+    );
 
 }
-
-export default Dashboard;

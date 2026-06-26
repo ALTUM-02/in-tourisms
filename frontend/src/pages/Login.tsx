@@ -56,11 +56,21 @@ const handleSubmit = async (
 
     console.error(error);
 
-    alert(
-      "Invalid username or password."
-    );
+    if (error.response &&
+      error.response.status === 401
+    ) {
+      alert(
+        "Invalid username or password."
+      );
+    } else {
+      alert(
+        "An error occurred. Please try again."
+      );
+    }
 
   }
+
+
 
 };
 
@@ -126,8 +136,8 @@ const handleSubmit = async (
               />
 
               <input
-                type="email"
-                placeholder="Email"
+                type="text"
+                placeholder="Username"
                 value={username}
                 onChange={(e)=>
                   setUsername(

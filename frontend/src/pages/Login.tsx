@@ -1,4 +1,4 @@
-import { useState } from "react";
+import {  useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { loginUser } from "../services/authService";
 import {
@@ -13,7 +13,7 @@ function Login() {
     setShowPassword] =
     useState(false);
 
-  const [email, setEmail] =
+  const [username, setUsername] =
     useState("");
 
   const [password, setPassword] =
@@ -33,7 +33,7 @@ const handleSubmit = async (
 
     const response = await loginUser({
 
-      username: email,
+      username: username,
       password: password,
 
     });
@@ -128,9 +128,9 @@ const handleSubmit = async (
               <input
                 type="email"
                 placeholder="Email"
-                value={email}
+                value={username}
                 onChange={(e)=>
-                  setEmail(
+                  setUsername(
                     e.target.value
                   )
                 }

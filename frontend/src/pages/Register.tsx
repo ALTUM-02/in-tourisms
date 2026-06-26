@@ -1,7 +1,6 @@
 import { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { registerUser } from "../services/authService";
-import { useNavigate } from "react-router-dom";
 
 import {
   Eye,
@@ -21,6 +20,8 @@ function Register() {
   const [showConfirmPassword,
     setShowConfirmPassword] =
     useState(false);
+
+  const navigate = useNavigate();
 
   const [formData, setFormData] =
     useState({

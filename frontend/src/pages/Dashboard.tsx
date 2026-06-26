@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 
 import DashboardLayout
-from "../layouts/DashboardLayout";
+from "../components/dashboard/DashboardLayout";
 
 import Hero
 from "../components/dashboard/Hero";

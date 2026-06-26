@@ -50,7 +50,7 @@ const handleSubmit = async (
 
     alert("Login Successful!");
 
-    navigate("/");
+    navigate("/dashboard");
 
   } catch (error: any) {
 

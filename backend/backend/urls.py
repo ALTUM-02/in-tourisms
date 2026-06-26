@@ -27,13 +27,13 @@ from rest_framework_simplejwt.views import (
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('api/', include('users.urls')),
-    path('api/', include('wildlife.urls')),
-    path('api/',include('hotels.urls')),
-    path('api/', include('foods.urls')),
-    path('api/login/', TokenObtainPairView.as_view()),
-    path('api/token/refresh/', TokenRefreshView.as_view()),
-    path('api/', include('destinations.urls')),
+    path('api/auth/', include('users.urls')),
+    path('api/wildlife/', include('wildlife.urls')),
+    path('api/hotels/', include('hotels.urls')),
+    path('api/foods/', include('foods.urls')),
+    path('api/auth/login/', TokenObtainPairView.as_view()),
+    path('api/auth/token/refresh/', TokenRefreshView.as_view()),
+    path('api/destinations/', include('destinations.urls')),
 ]
 
 if settings.DEBUG:

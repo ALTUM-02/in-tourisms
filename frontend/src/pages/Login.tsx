@@ -1,5 +1,6 @@
 import { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import { loginUser } from "../services/authService";
 import {
   Eye,
   EyeOff,
@@ -18,18 +19,50 @@ function Login() {
   const [password, setPassword] =
     useState("");
 
-  const handleSubmit = (
-    e: React.FormEvent
-  ) => {
-    e.preventDefault();
 
-    console.log({
-      email,
-      password,
+
+const navigate = useNavigate();
+
+const handleSubmit = async (
+  e: React.FormEvent
+) => {
+
+  e.preventDefault();
+
+  try {
+
+    const response = await loginUser({
+
+      username: email,
+      password: password,
+
     });
 
-    // JWT Login API
-  };
+    localStorage.setItem(
+      "access",
+      response.data.access
+    );
+
+    localStorage.setItem(
+      "refresh",
+      response.data.refresh
+    );
+
+    alert("Login Successful!");
+
+    navigate("/");
+
+  } catch (error: any) {
+
+    console.error(error);
+
+    alert(
+      "Invalid username or password."
+    );
+
+  }
+
+};
 
   return (
     <div

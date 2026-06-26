@@ -1,20 +1,21 @@
 import Navbar from "./Navbar";
-
 import Sidebar from "./Sidebar";
+
+interface Props{
+
+children:React.ReactNode;
+
+}
 
 export default function DashboardLayout({
 
 children,
 
-}:{
-
-children:React.ReactNode
-
-}){
+}:Props){
 
 return(
 
-<div className="min-h-screen bg-slate-950 text-white">
+<div className="bg-slate-950 min-h-screen">
 
 <Navbar/>
 
@@ -24,7 +25,7 @@ return(
 
 <main
 
-className="flex-1 p-8 overflow-y-auto"
+className="flex-1 p-8 ml-72"
 
 >
 

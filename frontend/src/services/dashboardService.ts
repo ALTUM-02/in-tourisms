@@ -2,15 +2,10 @@ import api from "../api/axios";
 
 export const getDashboard = () => {
 
-    return api.get("/dashboard/", {
+return api.get(
 
-        headers:{
+"/dashboard/"
 
-            Authorization:
-            `Bearer ${localStorage.getItem("access")}`
-
-        }
-
-    });
+);
 
 };

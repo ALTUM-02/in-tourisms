@@ -12,8 +12,4 @@ export interface DashboardStats {
 
 export interface UserProfile {
 
-    id: number;
-
-    username: string;
-
-    full_na
+    

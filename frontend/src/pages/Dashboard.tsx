@@ -25,7 +25,7 @@ export default function App() {
             <div className="w-8 h-8 bg-gradient from-orange-500 to-amber-400 rounded-lg flex items-center justify-center">
               <Compass className="w-5 h-5 text-white animate-pulse" />
             </div>
-            <span className="text-xl font-bold tracking-tight bg-gradient-to- from-white to-gray-400 bg-clip-text text-transparent">AiroGuide</span>
+            <span className="text-xl font-bold tracking-tight bg-gradient from-white to-gray-400 bg-clip-text text-transparent">AiroGuide</span>
           </div>
 
           <nav className="space-y-2">
@@ -53,7 +53,7 @@ export default function App() {
 
         {/* User Card Profile */}
         <div className="flex items-center gap-3 pt-6 border-t border-gray-800">
-          <img src="https://unsplash.com" alt="User avatar" className="w-10 h-10 rounded-full object-cover border border-gray-700" />
+          <img src="https://images.unsplash.com/photo-1500648767791-00dcc994a43" alt="User avatar" className="w-10 h-10 rounded-full object-cover border border-gray-700" />
           <div>
             <h4 className="text-sm font-semibold">Zayan Abdullah</h4>
             <p className="text-xs text-gray-500">Travel Blogger</p>
@@ -170,4 +170,6 @@ export default function App() {
             {/* Custom Bottom Carousel Overlay Items */}
             <div className="w-full grid grid-cols-4 gap-2 pt-2">
               {[1,2,3,4].map((i) => (
-                <div key={i} className="bg-black/60 backdrop-blur-sm border border-white/5 rounded-xl p-1.5 flex items-center gap-2">
+                <div key={i} className="bg-black/60 backdrop-blur-sm border border-white/5 rounded-xl p-1.5 flex items-center gap-2"></div>
+              )}
+            </div> 

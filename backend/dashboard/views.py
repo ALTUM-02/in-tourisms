@@ -29,4 +29,3 @@ class DashboardAPIView(APIView):
                 {"error": str(e)},
                 status=500
             )from rest_framework.views import APIView
-from rest_framework.permissions import IsAuthenticat

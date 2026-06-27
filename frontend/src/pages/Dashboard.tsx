@@ -6,6 +6,3 @@ interface Stats {
   revenue: number;
   activeTours: number;
 }
-
-export default function DashboardOverview() {
-  const [stats, setStats] = useState<Stats | null>(nul

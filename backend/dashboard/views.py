@@ -15,4 +15,4 @@ class DashboardView(APIView):
 
     def get(self, request):
         return Response({
-            "destinations": Destination.
+            "destinations":

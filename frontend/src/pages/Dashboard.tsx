@@ -31,5 +31,4 @@ export default function DashboardOverview() {
       <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
         <div className="bg-white p-6 rounded-lg shadow-sm">
           <p className="text-slate-500 text-sm">Total Bookings</p>
-          <p className="text-3xl font-bold text-slate-800">{stats?.totalBookings ?? 0}</p>
-        </
+          <p className="text-3xl font-bold text-

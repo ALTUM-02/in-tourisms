@@ -9,5 +9,3 @@ from destinations.models import Destination
 from wildlife.models import Animal
 from hotels.models import Hotel
 from foods.models import Food
-
-class Da

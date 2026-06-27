@@ -48,5 +48,3 @@ class DashboardAPIView(APIView):
                 "wildlife": Animal.objects.count(),
                 "hotels": Hotel.objects.count(),
                 "foods": Food.objects.count(),
-            }
-            return Response(data)

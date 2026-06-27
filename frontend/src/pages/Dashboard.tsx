@@ -33,5 +33,4 @@ export default function DashboardOverview() {
           <p className="text-slate-500 text-sm">Total Bookings</p>
           <p className="text-3xl font-bold text-slate-800">{stats?.totalBookings ?? 0}</p>
         </div>
-        <div className="bg-white p-6 rounded-lg shadow-sm">
-          <p clas
+        <div className="bg-white p-6 rounded-lg sh

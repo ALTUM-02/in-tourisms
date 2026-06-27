@@ -39,8 +39,4 @@ from foods.models import Food
 
 
 class DashboardAPIView(APIView):
-    permission_classes = [IsAuthenticated]
-
-    def get(self, request):
-        try:
-        
+    permission_classes = [IsAuthentic

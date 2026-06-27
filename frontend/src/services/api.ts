@@ -4,8 +4,3 @@ import Cookies from 'js-cookie';
 const api = axios.create({
   baseURL: 'https://tourism-dashboard.com', // Replace with your actual API endpoint
   headers: {
-    'Content-Type': 'application/json',
-  },
-});
-
-// Request interceptor to add JWT token

@@ -21,8 +21,3 @@ export default function DashboardOverview() {
         console.error('Error fetching dashboard stats:', error);
         setLoading(false);
       });
-  }, []);
-
-  if (loading) return <div className="p-6 text-center">Loading dashboard data...</div>;
-
-  return (

@@ -12,4 +12,4 @@ const api = axios.create({
 api.interceptors.request.use(
   (config) => {
     const token = Cookies.get('auth_token');
-    if (token && config.headers) {
+    if 

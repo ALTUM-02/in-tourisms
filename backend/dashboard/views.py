@@ -16,4 +16,3 @@ class DashboardView(APIView):
     def get(self, request):
         return Response({
             "destinations": Destination.objects.count(),
-            "animals": Animal.objects.count(),

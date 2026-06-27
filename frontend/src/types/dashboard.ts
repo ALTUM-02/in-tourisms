@@ -16,8 +16,4 @@ export interface UserProfile {
 
     username: string;
 
-    full_name: string;
-
-    email: string;
-
-    country: string;
+    full_na

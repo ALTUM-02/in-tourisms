@@ -50,5 +50,3 @@ class DashboardAPIView(APIView):
                 "foods": Food.objects.count(),
             }
             return Response(data)
-
-        except Excepti

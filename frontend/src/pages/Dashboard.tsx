@@ -1,7 +1,7 @@
-import React, { useState, useEffect } from 'react';
-import { Compass, Home, MessageSquare, MapPin, Search, Bell, Settings, Heart, Star, Plus, Minus } from 'lucide-react';
-import api from './services/api';
-import { DashboardResponse } from './types/dashboard';
+import { useState, useEffect } from 'react';
+import { Compass, Home, MessageSquare, MapPin, Search, Bell, Settings, Plus, Minus } from 'lucide-react';
+import api from '../services/api';
+import type { DashboardResponse } from '../types/dashboard';
 
 export default function App() {
   const [data, setData] = useState<DashboardResponse | null>(null);
@@ -169,7 +169,15 @@ export default function App() {
             
             {/* Custom Bottom Carousel Overlay Items */}
             <div className="w-full grid grid-cols-4 gap-2 pt-2">
-              {[1,2,3,4].map((i) => (
-                <div key={i} className="bg-black/60 backdrop-blur-sm border border-white/5 rounded-xl p-1.5 flex items-center gap-2"></div>
-              )}
-            </div> 
+                {[1,2,3,4].map((i) => (
+                  <div
+                      key={i}
+                      className="bg-black/60 ..."
+                  ></div>
+                ))}
+            </div>
+        </div>
+      </main>
+    </div>
+  );
+  }      

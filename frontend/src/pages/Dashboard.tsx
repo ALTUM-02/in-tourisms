@@ -41,5 +41,4 @@ export default function DashboardOverview() {
           <p className="text-slate-500 text-sm">Active Tours</p>
           <p className="text-3xl font-bold text-slate-800">{stats?.activeTours ?? 0}</p>
         </div>
-      </div>
-    <
+    

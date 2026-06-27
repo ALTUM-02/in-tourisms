@@ -13,11 +13,3 @@ export default function DashboardOverview() {
 
   useEffect(() => {
     api.get('/dashboard/summary-stats')
-      .then((response) => {
-        setStats(response.data);
-        setLoading(false);
-      })
-      .catch((error) => {
-        console.error('Error fetching dashboard stats:', error);
-        setLoading(false);
-      });

@@ -10,5 +10,4 @@ from wildlife.models import Animal
 from hotels.models import Hotel
 from foods.models import Food
 
-class DashboardView(APIView):
-    permission_classes = [IsAuthenticated]
+class DashboardView(APIView)

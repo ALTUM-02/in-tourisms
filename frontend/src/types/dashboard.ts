@@ -21,7 +21,3 @@ export interface UserProfile {
     email: string;
 
     country: string;
-
-    role: string;
-
-    profile_photo: string | null;

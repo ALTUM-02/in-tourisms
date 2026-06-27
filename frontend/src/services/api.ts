@@ -17,4 +17,4 @@ api.interceptors.request.use(
     }
     return config;
   },
-  (error) => Promis
+  (

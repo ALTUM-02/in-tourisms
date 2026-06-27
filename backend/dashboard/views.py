@@ -38,5 +38,4 @@ from hotels.models import Hotel
 from foods.models import Food
 
 
-class DashboardAPIView(APIView):
-    permission_classes = [IsAuthentic
+class DashboardAPIView(APIVi

@@ -7,4 +7,4 @@ from rest_framework.response import Response
 
 from destinations.models import Destination
 from wildlife.models import Animal
-from hotels.models import
+from hotels.models

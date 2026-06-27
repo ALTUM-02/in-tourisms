@@ -43,8 +43,4 @@ class DashboardAPIView(APIView):
 
     def get(self, request):
         try:
-            data = {
-                "destinations": Destination.objects.count(),
-                "wildlife": Animal.objects.count(),
-                "hotels": Hotel.objects.count(),
-                "foods": Food.
+        

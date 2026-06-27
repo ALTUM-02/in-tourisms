@@ -37,4 +37,4 @@ export default function DashboardOverview() {
           <p className="text-slate-500 text-sm">Revenue</p>
           <p className="text-3xl font-bold text-slate-800">${stats?.revenue.toLocaleString() ?? 0}</p>
         </div>
-        <div className="bg-white p-6 rounded-lg shado
+        <div className

@@ -51,5 +51,4 @@ class DashboardAPIView(APIView):
             }
             return Response(data)
 
-        except Exception as e:
-            return 
+        except Excepti

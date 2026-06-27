@@ -11,7 +11,7 @@ from hotels.models import Hotel
 from foods.models import Food
 
 
-class DashboardAPIView(APIView):
+class DashboardView(APIView):
     permission_classes = [IsAuthenticated]
 
     def get(self, request):

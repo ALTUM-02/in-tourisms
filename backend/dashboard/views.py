@@ -30,6 +30,4 @@ class DashboardAPIView(APIView):
                 status=500
             )from rest_framework.views import APIView
 from rest_framework.permissions import IsAuthenticated
-from rest_framework.response import Response
-
-from destinations.models import Destinatio
+from rest_framework.response import Respon

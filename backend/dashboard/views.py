@@ -19,4 +19,3 @@ class DashboardView(APIView):
             "animals": Animal.objects.count(),
             "hotels": Hotel.objects.count(),
             "foods": Food.objects.count(),
-        })

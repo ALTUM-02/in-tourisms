@@ -8,8 +8,4 @@ interface Stats {
 }
 
 export default function DashboardOverview() {
-  const [stats, setStats] = useState<Stats | null>(null);
-  const [loading, setLoading] = useState(true);
-
-  useEffect(() => {
-    api.get('/dashboard/summary-stats')
+  const [stats, setStats] = useState<Stats | null>(nul

@@ -17,4 +17,4 @@ class DashboardView(APIView):
         return Response({
             "destinations": Destination.objects.count(),
             "animals": Animal.objects.count(),
-            "hotels": Hotel.objects.count(),
+            "hotels"

@@ -25,5 +25,3 @@ export interface UserProfile {
     role: string;
 
     profile_photo: string | null;
-
-}

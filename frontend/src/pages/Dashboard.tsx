@@ -26,5 +26,3 @@ export default function DashboardOverview() {
   if (loading) return <div className="p-6 text-center">Loading dashboard data...</div>;
 
   return (
-    <div>
-      <h1 className="text-2xl fon

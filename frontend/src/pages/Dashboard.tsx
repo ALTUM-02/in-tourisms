@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import { Compass, Home, MessageSquare, MapPin, Search, Bell, Settings, Plus, Minus } from 'lucide-react';
 import api from '../services/api';
 import type { DashboardResponse } from '../types/dashboard';
-import Navbar from '../components/dashboard/Navbar';
+import Navbar from '../components//Navbar';
 
 export default function App() {
   const [data, setData] = useState<DashboardResponse | null>(null);
@@ -17,6 +17,9 @@ export default function App() {
   }, []);
 
   return (
+    
+    <Navbar />
+
     <div className="min-h-screen bg-[#12141c] text-white font-sans p-4 lg:p-6 flex flex-col md:flex-row gap-6 selection:bg-orange-500">
       
       {/* 1. LEFT SIDEBAR */}
@@ -28,6 +31,8 @@ export default function App() {
             </div>
             <span className="text-xl font-bold tracking-tight bg-gradient from-white to-gray-400 bg-clip-text text-transparent">AiroGuide</span>
           </div>
+          
+          
 
           <nav className="space-y-2">
             {[

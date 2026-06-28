@@ -53,8 +53,7 @@ export default function App() {
                 <item.icon className="w-5 h-5" />
                 <span>{item.name}</span>
               </button>
-            ))}
-          
+            
         </div>
 
         {/* User Card Profile */}

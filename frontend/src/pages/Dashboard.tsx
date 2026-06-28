@@ -39,8 +39,7 @@ export default function App() {
               { name: 'Home', path: "/" , icon: Home },
               { name: 'Explore', icon: Compass },
               { name: 'Message', icon: MessageSquare },
-              { name: 'Map', icon: MapPin },
-            ].map((item) => 
+              { name: 'Map', icon: Ma
         </div>
 
         {/* User Card Profile */}

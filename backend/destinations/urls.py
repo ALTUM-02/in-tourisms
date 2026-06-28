@@ -4,9 +4,10 @@ from .views import DestinationViewSet
 
 router = DefaultRouter()
 
-router.register(
-    'destinations',
+router.register(  
+    "",                
     DestinationViewSet
+    basename="destination"
 )
 
 urlpatterns = router.urls

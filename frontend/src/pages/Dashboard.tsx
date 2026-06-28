@@ -34,7 +34,7 @@ export default function App() {
           
           
 
-          <nav className="spac
+          
         </div>
 
         {/* User Card Profile */}

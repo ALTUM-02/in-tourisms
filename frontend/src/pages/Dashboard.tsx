@@ -38,7 +38,6 @@ export default function App() {
             {[
               { name: 'Home', path: "/" , icon: Home },
               { name: 'Explore', icon: Compass },
-              { name: 'Message', 
         </div>
 
         {/* User Card Profile */}

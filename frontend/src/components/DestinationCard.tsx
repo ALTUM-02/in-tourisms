@@ -9,11 +9,15 @@ function DestinationCard({
   return (
     <div className="bg-white rounded-xl shadow">
 
-      <img
-        src={destination.image}
-        alt={destination.name}
-        className="h-60 w-full object-cover"
-      />
+      const imageUrl = destination.image?.startsWith("http")
+        ? destination.image
+        : `http://127.0.0.1:8000${destination.image}`;
+
+        <img
+          src={imageUrl}
+          alt={destination.name}
+          className="w-full h-full object-cover"
+        />  
 
       <div className="p-4">
 

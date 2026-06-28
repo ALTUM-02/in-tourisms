@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import { Compass, Home, MessageSquare, MapPin, Search, Bell, Settings, Plus, Minus } from 'lucide-react';
 import api from '../services/api';
 import type { DashboardResponse } from '../types/dashboard';
+import Navbar from '../components/dashboard/Navbar';
 
 export default function App() {
   const [data, setData] = useState<DashboardResponse | null>(null);

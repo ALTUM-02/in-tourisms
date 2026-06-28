@@ -34,8 +34,7 @@ export default function App() {
           
           
 
-          <nav className="space-y-2">
-            {[
+          <nav className="spac
         </div>
 
         {/* User Card Profile */}

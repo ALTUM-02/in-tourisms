@@ -43,8 +43,7 @@ export default function App() {
             ].map((item) => (
               <button
                 key={item.name}
-                onClick={() => setActiveTab(item.name)}
-                className={`w-full flex items-
+                onClick={() => setActiveTab(item.name)
         </div>
 
         {/* User Card Profile */}

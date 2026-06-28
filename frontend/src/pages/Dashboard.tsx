@@ -49,8 +49,6 @@ export default function App() {
                     ? 'bg-white/10 text-white font-medium shadow-inner border border-white/5' 
                     : 'text-gray-400 hover:bg-white/5 hover:text-gray-200'
                 }`}
-              >
-                <item.icon className="w-5 
         </div>
 
         {/* User Card Profile */}

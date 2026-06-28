@@ -44,7 +44,7 @@ export default function App() {
               <button
                 key={item.name}
                 onClick={() => setActiveTab(item.name)}
-                className={`w-full flex items-center gap-4 px-4 py-3 rounded-xl tran
+                className={`w-full flex items-
         </div>
 
         {/* User Card Profile */}

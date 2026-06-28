@@ -34,7 +34,35 @@ export default function App() {
           
           
 
-          
+          <nav className="space-y-2">
+  {[
+    
+  { name: "Home", path: "/", icon: Home },
+  { name: "Dashboard", path: "/dashboard", icon: Compass },
+  { name: "Destinations", path: "/destinations", icon: MapPin },
+  { name: "Wildlife", path: "/wildlife", icon: Compass },
+  { name: "Hotels", path: "/hotels", icon: Home },
+  { name: "Foods", path: "/foods", icon: MessageSquare },
+  { name: "AI Assistant", path: "/assistant", icon: MessageSquare },
+  { name: "Trip Planner", path: "/planner", icon: MapPin },
+  ].map((item) => (
+
+    <Link
+      key={item.name}
+      to={item.path}
+      onClick={() => setActiveTab(item.name)}
+      className={`w-full flex items-center gap-4 px-4 py-3 rounded-xl transition-all duration-200 ${
+        activeTab === item.name
+          ? "bg-white/10 text-white font-medium shadow-inner border border-white/5"
+          : "text-gray-400 hover:bg-white/5 hover:text-gray-200"
+      }`}
+    >
+      <item.icon className="w-5 h-5" />
+      <span>{item.name}</span>
+    </Link>
+
+  ))}
+</nav>
         </div>
 
         {/* User Card Profile */}

@@ -1,174 +1,185 @@
 import { useEffect, useState } from "react";
-import { Search } from "lucide-react";
+import { Link } from "react-router-dom";
+import { MapPin, ArrowRight } from "lucide-react";
 import { getDestinations } from "../services/destinationService";
-import DestinationCard from "../components/DestinationCard";
+import type { Destination } from "../types/destination";
 
-function Destinations() {
-  const [destinations, setDestinations] =
-    useState([]);
-
-  const [search, setSearch] =
-    useState("");
+function FeaturedDestinations() {
+  const [destinations, setDestinations] = useState<Destination[]>([]);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    getDestinations().then((res) => {
-      setDestinations(res.data);
-    });
+    getDestinations()
+      .then((res) => {
+        setDestinations(res.data.slice(0, 6));
+      })
+      .catch((err) => {
+        console.log(err);
+      })
+      .finally(() => setLoading(false));
   }, []);
 
-  const filteredDestinations =
-    destinations.filter((destination: any) =>
-      destination.name
-        .toLowerCase()
-        .includes(search.toLowerCase())
+  if (loading) {
+    return (
+      <section className="py-16">
+        <div className="text-center text-gray-500">
+          Loading destinations...
+        </div>
+      </section>
     );
+  }
 
   return (
-    <div className="min-h-screen bg-slate-50">
+    <section className="py-16 bg-gradient from-white to-slate-100">
 
-      {/* HERO SECTION */}
+      <div className="max-w-7xl mx-auto px-6">
 
-      <section
-        className="
-        relative
-        h-500px
-        bg-cover
-        bg-center
-        flex
-        items-center
-        justify-center
-        "
-        style={{
-          backgroundImage:
-            "url('https://images.unsplash.com/photo-1506744038136-46273834b3fb')",
-        }}
-      >
-        <div className="absolute inset-0 bg-black/50"></div>
+        {/* Heading */}
 
-        <div className="relative z-10 text-center text-white px-4">
+        <div className="flex items-center justify-between mb-10">
 
-          <h1
-            className="
-            text-5xl
-            md:text-7xl
-            font-bold
-            mb-6
-            "
-          >
-            Discover Tanzania
-          </h1>
+          <div>
 
-          <p
-            className="
-            text-lg
-            md:text-2xl
-            mb-8
-            "
-          >
-            Explore National Parks,
-            Mountains, Beaches and
-            Wildlife Adventures
-          </p>
+            <h2 className="text-4xl font-bold text-slate-800">
+              Featured Destinations
+            </h2>
 
-          {/* SEARCH */}
+            <p className="text-gray-500 mt-2">
+              Discover Tanzania's most beautiful places.
+            </p>
 
-          <div
-            className="
-            max-w-xl
-            mx-auto
-            relative
-            "
-          >
-            <Search
-              size={20}
-              className="
-              absolute
-              left-4
-              top-4
-              text-gray-500
-              "
-            />
-
-            <input
-              type="text"
-              placeholder="Search destination..."
-              value={search}
-              onChange={(e) =>
-                setSearch(e.target.value)
-              }
-              className="
-              w-full
-              pl-12
-              pr-4
-              py-4
-              rounded-full
-              text-black
-              shadow-lg
-              "
-            />
           </div>
 
-        </div>
-      </section>
-
-      {/* DESTINATIONS */}
-
-      <section
-        className="
-        max-w-7xl
-        mx-auto
-        px-6
-        py-16
-        "
-      >
-        <div
-          className="
-          flex
-          justify-between
-          items-center
-          mb-10
-          "
-        >
-          <h2
+          <Link
+            to="/destinations"
             className="
-            text-4xl
-            font-bold
+              hidden md:flex
+              items-center
+              gap-2
+              text-emerald-600
+              font-semibold
+              hover:text-emerald-700
             "
           >
-            Featured Destinations
-          </h2>
+            View All
 
-          <span
-            className="
-            text-gray-500
-            "
-          >
-            {filteredDestinations.length}
-            {" "}Destinations
-          </span>
+            <ArrowRight size={18} />
+
+          </Link>
+
         </div>
 
-        <div
-          className="
-          grid
-          md:grid-cols-2
-          lg:grid-cols-3
-          gap-8
-          "
-        >
-          {filteredDestinations.map(
-            (destination: any) => (
-              <DestinationCard
-                key={destination.id}
-                destination={destination}
-              />
-            )
-          )}
-        </div>
-      </section>
+        {/* Cards */}
 
-    </div>
+        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+
+          {destinations.map((destination) => (
+
+            <div
+              key={destination.id}
+              className="
+                group
+                bg-white
+                rounded-2xl
+                overflow-hidden
+                shadow-lg
+                hover:shadow-2xl
+                transition
+                duration-300
+                hover:-translate-y-2
+                cursor-pointer
+              "
+            >
+
+              <div className="relative h-64 overflow-hidden">
+
+                <img
+                  src={destination.image}
+                  alt={destination.name}
+                  className="
+                    w-full
+                    h-full
+                    object-cover
+                    group-hover:scale-110
+                    transition
+                    duration-700
+                  "
+                />
+
+                <div className="absolute inset-0 bg-gradient from-black/70 via-transparent to-transparent" />
+
+                <div className="absolute bottom-4 left-4 text-white">
+
+                  <h3 className="text-2xl font-bold">
+                    {destination.name}
+                  </h3>
+
+                  <div className="flex items-center gap-2 mt-1">
+
+                    <MapPin size={16} />
+
+                    <span className="text-sm">
+                      {destination.region}
+                    </span>
+
+                  </div>
+
+                </div>
+
+              </div>
+
+              <div className="p-6">
+
+                <p className="text-gray-600 line-clamp-3">
+                  {destination.description}
+                </p>
+
+                <div className="mt-5 flex justify-between items-center">
+
+                  <span className="font-semibold text-emerald-700">
+                    Entry Fee:
+                  </span>
+
+                  <span className="font-bold text-slate-700">
+                    {destination.entry_fee}
+                  </span>
+
+                </div>
+
+                <Link
+                  to={`/destinations/${destination.id}`}
+                  className="
+                    mt-6
+                    inline-flex
+                    items-center
+                    gap-2
+                    bg-emerald-600
+                    hover:bg-emerald-700
+                    text-white
+                    px-5
+                    py-3
+                    rounded-lg
+                    transition
+                  "
+                >
+                  Explore
+
+                  <ArrowRight size={18} />
+
+                </Link>
+
+              </div>
+
+            </div>
+
+          ))}
+
+        </div>
+
+      </div>
+
+    </section>
   );
 }
 
-export default Destinations;
+export default FeaturedDestinations;

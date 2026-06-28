@@ -40,8 +40,7 @@ export default function App() {
               { name: 'Explore', icon: Compass },
               { name: 'Message', icon: MessageSquare },
               { name: 'Map', icon: MapPin },
-            ].map((item) => (
-            
+            ].map((item) => 
         </div>
 
         {/* User Card Profile */}

@@ -5,6 +5,7 @@ import type { DashboardResponse } from '../types/dashboard';
 import Navbar from '../components//Navbar';
 
 export default function App() {
+
   const [data, setData] = useState<DashboardResponse | null>(null);
   const [activeTab, setActiveTab] = useState('Home');
   const [activeFilter, setActiveFilter] = useState('All');
@@ -17,8 +18,7 @@ export default function App() {
   }, []);
 
   return (
-    
-    <Navbar />
+
 
     <div className="min-h-screen bg-[#12141c] text-white font-sans p-4 lg:p-6 flex flex-col md:flex-row gap-6 selection:bg-orange-500">
       
@@ -61,7 +61,7 @@ export default function App() {
         <div className="flex items-center gap-3 pt-6 border-t border-gray-800">
           <img src="https://images.unsplash.com/photo-1500648767791-00dcc994a43" alt="User avatar" className="w-10 h-10 rounded-full object-cover border border-gray-700" />
           <div>
-            <h4 className="text-sm font-semibold">Zayan Abdullah</h4>
+            <h4 className="text-sm font-semibold">Zaya</h4>
             <p className="text-xs text-gray-500">Travel Blogger</p>
           </div>
         </div>

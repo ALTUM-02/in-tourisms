@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import { Compass, Home, MessageSquare, MapPin, Search, Bell, Settings, Plus, Minus } from 'lucide-react';
 import api from '../services/api';
 import type { DashboardResponse } from '../types/dashboard';
-import Navbar from '../components//Navbar';
+import { Link } from "react-router-dom";
 
 export default function App() {
 
@@ -36,7 +36,7 @@ export default function App() {
 
           <nav className="space-y-2">
             {[
-              { name: 'Home', icon: Home },
+              { name: 'Home', path: "/" , icon: Home },
               { name: 'Explore', icon: Compass },
               { name: 'Message', icon: MessageSquare },
               { name: 'Map', icon: MapPin },
@@ -54,7 +54,7 @@ export default function App() {
                 <span>{item.name}</span>
               </button>
             ))}
-          </nav>
+          
         </div>
 
         {/* User Card Profile */}

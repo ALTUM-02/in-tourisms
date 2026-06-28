@@ -41,8 +41,7 @@ export default function App() {
               { name: 'Message', icon: MessageSquare },
               { name: 'Map', icon: MapPin },
             ].map((item) => (
-              <button
-                key={item.name}
+            
         </div>
 
         {/* User Card Profile */}

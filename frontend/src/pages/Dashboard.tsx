@@ -43,7 +43,6 @@ export default function App() {
             ].map((item) => (
               <button
                 key={item.name}
-                onClick={() => setActiveTab(item.name)
         </div>
 
         {/* User Card Profile */}

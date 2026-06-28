@@ -50,8 +50,7 @@ export default function App() {
                     : 'text-gray-400 hover:bg-white/5 hover:text-gray-200'
                 }`}
               >
-                <item.icon className="w-5 h-5" />
-                <span>{item.name}</span>
+                <item.icon className="w-5 
         </div>
 
         {/* User Card Profile */}

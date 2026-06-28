@@ -36,8 +36,7 @@ export default function App() {
 
           <nav className="space-y-2">
             {[
-              { name: 'Home', path: "/" , icon: Home },
-              { name: 'Explore', 
+              { name: 'Home', path: "/" , icon: Ho
         </div>
 
         {/* User Card Profile */}

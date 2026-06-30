@@ -6,7 +6,7 @@ router = DefaultRouter()
 
 router.register(  
     "",                
-    DestinationViewSet
+    DestinationViewSet,
     basename="destination"
 )
 

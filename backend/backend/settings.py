@@ -53,7 +53,7 @@ INSTALLED_APPS = [
     'hotels',
     'foods',
     'chats',
-    'ai_assistant',
+    'chats',
     'django_filters'
 ]
 

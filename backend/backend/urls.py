@@ -35,6 +35,7 @@ urlpatterns = [
     path('api/chats/', include('chats.urls')),
     path('api/bookings/', include('bookings.urls')),
     path('api/favorites/', include('favorites.urls')),
+    path('api/packages/', include('packages.urls')),
     path('api/auth/login/', TokenObtainPairView.as_view()),
     path('api/auth/token/refresh/', TokenRefreshView.as_view()),
     path('api/destinations/', include('destinations.urls')),

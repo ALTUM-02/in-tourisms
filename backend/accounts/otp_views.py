@@ -162,5 +162,5 @@ class VerifyOTPView(APIView):
 
         return Response({
             'detail': 'Email verified successfully!',
-            'valid': True,
+            'valid': True
         }, status=status.HTTP_200_OK)

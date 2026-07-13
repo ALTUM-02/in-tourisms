@@ -1,16 +1,11 @@
 from rest_framework import serializers
-from .models import Animal
+from .models import Wildlife
 
 
-class AnimalSerializer(
-    serializers.ModelSerializer
-):
-
-    destination_name = serializers.CharField(
-        source='destination.name',
-        read_only=True
-    )
+class WildlifeSerializer(serializers.ModelSerializer):
+    destination_name = serializers.CharField(source='destination.name', read_only=True)
 
     class Meta:
-        model = Animal
+        model = Wildlife
         fields = '__all__'
+        read_only_fields = ['id', 'created_at']

@@ -52,7 +52,11 @@ INSTALLED_APPS = [
     'destinations',
     'wildlife',
     'hotels',
-    'foods',
+    
+    'foods.as.FoodsConfig',
+    'bookings',
+    'favorites',
+    'packages',
 ]
 
 MIDDLEWARE = [

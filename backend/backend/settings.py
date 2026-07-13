@@ -54,7 +54,6 @@ INSTALLED_APPS = [
     'hotels',
     'foods',
     'chats',
-    'django_filters'
 ]
 
 MIDDLEWARE = [

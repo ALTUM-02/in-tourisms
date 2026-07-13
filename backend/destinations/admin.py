@@ -1,24 +1,8 @@
 from django.contrib import admin
-
-# Register your models here.
 from .models import Destination
-
 
 @admin.register(Destination)
 class DestinationAdmin(admin.ModelAdmin):
-
-    list_display = (
-        'name',
-        'region',
-        'entry_fee',
-        'created_at'
-    )
-
-    search_fields = (
-        'name',
-        'region'
-    )
-
-    list_filter = (
-        'region',
-    )
+    list_display = ['name', 'category', 'country', 'rating', 'is_featured']
+    list_filter = ['category', 'country', 'is_featured']
+    search_fields = ['name', 'location']

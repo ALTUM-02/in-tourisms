@@ -2,7 +2,7 @@ from django.db import models
 from destinations.models import Destination
 
 
-class Wildlife(models.Model):
+class WildlifeAnimal(models.Model):
     STATUS_CHOICES = (
         ('Least Concern', 'Least Concern'),
         ('Near Threatened', 'Near Threatened'),

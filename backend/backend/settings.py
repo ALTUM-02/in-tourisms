@@ -53,8 +53,7 @@ INSTALLED_APPS = [
     'wildlife',
     'hotels',
     'foods',
-    'chats',
-    'chats',
+    'chats.apps.MyUniqueChatsConfig',
     'django_filters'
 ]
 

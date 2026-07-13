@@ -53,7 +53,6 @@ INSTALLED_APPS = [
     'wildlife',
     'hotels',
     'foods',
-    'chats',
 ]
 
 MIDDLEWARE = [

@@ -1,26 +1,11 @@
 from django.contrib import admin
-
-# Register your models here.
-from django.contrib import admin
-
-from .models import Hotel
-
+from .models import Hotel, RoomType
 
 @admin.register(Hotel)
 class HotelAdmin(admin.ModelAdmin):
+    list_display = ['name', 'destination', 'rating', 'price_per_night']
+    list_filter = ['destination']
 
-    list_display = (
-        'name',
-        'destination',
-        'price_per_night',
-        'stars'
-    )
-
-    list_filter = (
-        'stars',
-        'destination'
-    )
-
-    search_fields = (
-        'name',
-    )
+@admin.register(RoomType)
+class RoomTypeAdmin(admin.ModelAdmin):
+    list_display = ['name', 'hotel', 'price', 'capacity']

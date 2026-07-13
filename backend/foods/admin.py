@@ -1,6 +1,8 @@
 from rest_framework import viewsets, permissions
-from .models import favorite
+from .models import MenuItem
 from .serializers import FavoriteSerializer
+from favorites.models import Favorite
+from django.contrib import admin
 
 
 class FavoriteViewSet(viewsets.ModelViewSet):
@@ -8,4 +10,4 @@ class FavoriteViewSet(viewsets.ModelViewSet):
     permission_classes = [permissions.IsAuthenticated]
 
     def get_queryset(self):
-        return favorite.objects.filter(user=self.request.user).select_related('destination')
+        return Favorite.objects.filter(user=self.request.user).select_related('destination')

@@ -1,31 +1,26 @@
-from django.shortcuts import render
-
-# Create your views here.
-from rest_framework import viewsets, status
-from rest_framework.response import Response
-
-from .models import Hotel
-from .serializers import HotelSerializer
+from rest_framework import viewsets, filters
+from django_filters.rest_framework import DjangoFilterBackend
+from .models import Hotel, RoomType
+from .serializers import HotelSerializer, HotelListSerializer, RoomTypeSerializer
+from destinations.views import IsOfficerOrReadOnly
 
 
 class HotelViewSet(viewsets.ModelViewSet):
-    queryset = Hotel.objects.all()
-    serializer_class = HotelSerializer
+    queryset = Hotel.objects.select_related('destination').all()
+    permission_classes = [IsOfficerOrReadOnly]
+    filter_backends = [DjangoFilterBackend, filters.SearchFilter]
+    filterset_fields = ['destination', 'rating']
+    search_fields = ['name', 'location']
 
-    def create(self, request, *args, **kwargs):
-        serializer = self.get_serializer(data=request.data)
+    def get_serializer_class(self):
+        if self.action == 'list':
+            return HotelListSerializer
+        return HotelSerializer
 
-        if not serializer.is_valid():
-            print("ERRORS:", serializer.errors)
 
-            return Response(
-                serializer.errors,
-                status=status.HTTP_400_BAD_REQUEST
-            )
-
-        serializer.save()
-
-        return Response(
-            serializer.data,
-            status=status.HTTP_201_CREATED
-        )
+class RoomTypeViewSet(viewsets.ModelViewSet):
+    queryset = RoomType.objects.select_related('hotel').all()
+    serializer_class = RoomTypeSerializer
+    permission_classes = [IsOfficerOrReadOnly]
+    filter_backends = [DjangoFilterBackend]
+    filterset_fields = ['hotel']

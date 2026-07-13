@@ -1,19 +1,8 @@
 from django.contrib import admin
+from .models import Wildlife
 
-# Register your models here.
-from django.contrib import admin
-from .models import Animal
-
-
-@admin.register(Animal)
-class AnimalAdmin(admin.ModelAdmin):
-
-    list_display = (
-        'name',
-        'destination'
-    )
-
-    search_fields = (
-        'name',
-        'scientific_name'
-    )
+@admin.register(Wildlife)
+class WildlifeAdmin(admin.ModelAdmin):
+    list_display = ['name', 'species', 'conservation_status', 'destination']
+    list_filter = ['conservation_status', 'destination']
+    search_fields = ['name', 'species']

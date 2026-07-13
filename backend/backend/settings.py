@@ -53,7 +53,7 @@ INSTALLED_APPS = [
     'wildlife',
     'hotels',
     
-    'foods.as.FoodsConfig',
+    'foods',
     'bookings',
     'favorites',
     'packages',

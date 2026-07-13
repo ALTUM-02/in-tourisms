@@ -1,5 +1,5 @@
 from rest_framework import viewsets, permissions
-from .models import Favorite
+from .models import favorite
 from .serializers import FavoriteSerializer
 
 
@@ -8,4 +8,4 @@ class FavoriteViewSet(viewsets.ModelViewSet):
     permission_classes = [permissions.IsAuthenticated]
 
     def get_queryset(self):
-        return Favorite.objects.filter(user=self.request.user).select_related('destination')
+        return favorite.objects.filter(user=self.request.user).select_related('destination')

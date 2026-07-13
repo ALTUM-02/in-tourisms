@@ -1,21 +1,11 @@
-from django.contrib import admin
-
-# Register your models here.
-from django.contrib import admin
-from .models import Food
+from rest_framework import viewsets, permissions
+from .models import Favorite
+from .serializers import FavoriteSerializer
 
 
-@admin.register(Food)
-class FoodAdmin(admin.ModelAdmin):
+class FavoriteViewSet(viewsets.ModelViewSet):
+    serializer_class = FavoriteSerializer
+    permission_classes = [permissions.IsAuthenticated]
 
-    list_display = (
-        'name',
-        'destination',
-        'category',
-        'price'
-    )
-
-    list_filter = (
-        'category',
-        'destination'
-    )
+    def get_queryset(self):
+        return Favorite.objects.filter(user=self.request.user).select_related('destination')

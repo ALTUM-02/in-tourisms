@@ -1,15 +1,14 @@
-from django.shortcuts import render
+from rest_framework import viewsets, filters
+from django_filters.rest_framework import DjangoFilterBackend
+from .models import Wildlife
+from .serializers import WildlifeSerializer
+from destinations.views import IsOfficerOrReadOnly
 
-# Create your views here.
-from rest_framework import viewsets
-from .models import Animal
-from .serializers import AnimalSerializer
 
-
-class AnimalViewSet(
-    viewsets.ModelViewSet
-):
-
-    queryset = Animal.objects.all()
-
-    serializer_class = AnimalSerializer
+class WildlifeViewSet(viewsets.ModelViewSet):
+    queryset = Wildlife.objects.select_related('destination').all()
+    serializer_class = WildlifeSerializer
+    permission_classes = [IsOfficerOrReadOnly]
+    filter_backends = [DjangoFilterBackend, filters.SearchFilter]
+    filterset_fields = ['destination', 'conservation_status']
+    search_fields = ['name', 'species']
